@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administration Panel</title>
+    <link type="image/x-icon" href="favicon.ico?v=1.0" rel="icon" />
+    <link type="image/x-icon" href="favicon.ico?v=1.0" rel="shortcut icon" />
+    <!-- Latest compiled and minified CSS -->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /-->
+    <!-- Optional theme -->
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" /-->
+    <link rel="stylesheet" href="assets/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--link rel="stylesheet" href="assets/css/navbar-fixed-top.css" /-->
+    <link rel="stylesheet" href="assets/css/easymorth-theme.css" />
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse"> <!--navbar-fixed-top-->
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="javascript:;">
+                    <img src="http://placehold.it/48x48" alt="" />
+                    EasyMorth Server
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="javascript:;">Link 1</a></li>
+                    <li><a href="javascript:;">Link 2</a></li>
+                    <li><a href="javascript:;">Link 2</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="javascript:;">Help <i class="fa fa-info-circle" aria-hidden="true"></i></a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+            
+        </div><!-- /.container -->
+    </nav>
+
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
+            <li class="active"><a href="#new-task" data-toggle="tab">Tasks</a></li>
+            <li><a href="#log" data-toggle="tab">Log</a></li>
+            <li><a href="#settings-1" data-toggle="tab">Settings</a></li>
+            <li><a href="#settings-2" data-toggle="tab">Settings</a></li>
+        </ul>
+        <div class="tab-content panel panel-default">
+            <div class="tab-pane panel-body" id="tasks">
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary">New task</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><a href="javascript:;">Tasks</a></th>
+                                <th>Schedule</th>
+                                <th><a href="javascript:;">Status</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Product1</td>
+                                <td>23/11/2013</td>
+                                <td>Pending</td>
+                            </tr>
+                            <tr>
+                                <td>Product2</td>
+                                <td>10/11/2013</td>
+                                <td>Delivered</td>
+                            </tr>
+                            <tr>
+                                <td>Product3</td>
+                                <td>20/10/2013</td>
+                                <td>In Call to confirm</td>
+                            </tr>
+                            <tr>
+                                <td>Product4</td>
+                                <td>20/10/2013</td>
+                                <td>Declined</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="tab-pane panel-body active" id="new-task">
+
+                <div class="form-group">
+                    <label class="control-label text-nowrap pull-right"><input type="checkbox" class="custom-control-input"> Task disabled</label>
+
+                    <span class="alert-dismissable">
+                        <button type="button" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+                            Back to tasks
+                        </button>
+                    </span>
+
+                    <a href="javascript:;" disabled="disabled" class="btn btn-primary">Apply</a>
+                    <a href="javascript:;" disabled="disabled" class="btn btn-default">Revert</a>
+                </div>
+
+                <div class="form-group">
+                    
+                </div>
+
+                <form role="form" class="form-horizontal" novalidate="novalidate">
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Project</label>
+                        <div class="col-xs-9">
+                            <div class="input-group">
+                                <input type="text" name="projectFile" placeholder="Morph file.." class="form-control">
+                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse...</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Project parameters</label>
+                        <div class="col-xs-9">
+                            <a href="javascript:;" class="btn btn-default btn-block">Assign more parameters</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3">Schedule</label>
+                        <div class="col-xs-9">
+                            <select name="scheduleType"  class="form-control" tabindex="-98"><option value="NoSchedule">Not scheduled</option> <option value="OnceSchedule">Once</option> <option value="HourlySchedule">Hourly</option> <option value="DailySchedule">Daily</option></select>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="tab-pane panel-body" id="log">
+
+                <div class="pull-right">
+                    <a href="javascript:;" class="btn btn-default">Clear log</a>
+                </div>
+
+                <div class="lead">Server log</div>
+
+                <div id="logdiv" class="loginfo panel panel-default">
+                    <div class="panel-body">
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="pull-left alert-dismissable">
+                                <p class="time">03.04.2017 16:05:04</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="info">000001 INFO</p>
+                            </div>
+                            <div class="pull-left alert-dismissable">
+                                <p class="jobs">0 jobs loaded successfully.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane panel-body" id="settings-1">
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default">Revert</button>
+                </div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Projects folder</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text" value="Artisanal kale" />
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary btn-block">Browse</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">System folder</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text" value="Artisanal kale" />
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary btn-block">Browse</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Logs folder</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text" value="Artisanal kale" />
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary btn-block">Browse</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">License key</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text" value="Artisanal kale" />
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary btn-block">Browse</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Repository</label>
+                        <div class="col-xs-8">
+                            <input class="form-control" type="text" value="Artisanal kale" />
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary btn-block">Browse</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Signature</label>
+                        <div class="col-xs-8">
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary btn-block">Copy</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div><!-- /#settings-1 -->
+            <div class="tab-pane panel-body" id="settings-2">
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default">Revert</button>
+                </div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Projects folder</label>
+                        <div class="col-xs-10">
+                            <div class="input-group">
+                                <input type="text" placeholder="Projects folder" class="form-control">
+                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">System folder</label>
+                        <div class="col-xs-10">
+                            <div class="input-group">
+                                <input type="text" placeholder="Projects folder" class="form-control">
+                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Logs folder</label>
+                        <div class="col-xs-10">
+                            <div class="input-group">
+                                <input type="text" placeholder="Projects folder" class="form-control">
+                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">License key</label>
+                        <div class="col-xs-10">
+                            <div class="input-group">
+                                <input type="text" placeholder="Projects folder" class="form-control">
+                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Repository</label>
+                        <div class="col-xs-10">
+                            <div class="input-group">
+                                <input type="text" placeholder="Projects folder" class="form-control">
+                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Signature</label>
+                        <div class="col-xs-10">
+                            <div class="input-group">
+                                <textarea class="form-control custom-control" rows="3" style="resize:none"></textarea>
+                                <span class="input-group-addon btn btn-primary">Copy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Signature</label>
+                        <div class="col-xs-8">
+                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="button" class="btn btn-primary btn-block">Copy</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div><!-- /#settings-2 -->
+        </div><!-- /.tab-content -->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Panel Heading</div>
+            <div class="panel-body">Panel Content</div>
+        </div>
+    </div><!-- /.container -->
+
+    <div class="container">
+        <ul class="nav nav-pills nav-stacked col-md-2">
+            <li class="active"><a href="#tab_a" data-toggle="pill">Pill A</a></li>
+            <li><a href="#tab_b" data-toggle="pill">Pill B</a></li>
+            <li><a href="#tab_c" data-toggle="pill">Pill C</a></li>
+            <li><a href="#tab_d" data-toggle="pill">Pill D</a></li>
+        </ul>
+        <div class="tab-content col-md-10">
+            <div class="tab-pane active" id="tab_a">
+                <h4>Pane A</h4>
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                    ac turpis egestas.
+                </p>
+            </div>
+            <div class="tab-pane" id="tab_b">
+                <h4>Pane B</h4>
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                    ac turpis egestas.
+                </p>
+            </div>
+            <div class="tab-pane" id="tab_c">
+                <h4>Pane C</h4>
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                    ac turpis egestas.
+                </p>
+            </div>
+            <div class="tab-pane" id="tab_d">
+                <h4>Pane D</h4>
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                    ac turpis egestas.
+                </p>
+            </div>
+        </div><!-- tab content -->
+    </div><!-- end of container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->
+    <script src="assets/js/jquery-3.2.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script-->
+    <!--script src="js/bootstrap.min.js"></script-->
+    <script src="assets/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
