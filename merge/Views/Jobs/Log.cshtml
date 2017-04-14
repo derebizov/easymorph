@@ -10,60 +10,63 @@
     </a>
 </div>
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs navigation">
     <li><a asp-area="" asp-controller="Jobs" asp-action="Edit" asp-route-id="@Model.JobId">@SiteResource.EditTask_TaskProperties</a></li>
     <li class="active"><a href="javascript:;">@SiteResource.EditTask_Log</a></li>
 </ul>
-<div class="tab-content panel panel-default">
-    <div class="loading" id="joblog-loading">
-        <div class="text">Loading....</div>
-        <div class="image"><img src="~/images/ProgressBar.gif" /></div>
-    </div>
-    <div class="tab-pane panel-body" id="joblog">
+<div class="tab-content panel panel-default panel-tabs">
+    <div class="tab-pane panel-body">
 
-        <div class="alert alert-warning fade in alert-dismissable" v-if="alertText!==''">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-            <strong>Warning!</strong> {{alertText}}.
+        <div class="loading" id="joblog-loading">
+            <div class="text">Loading....</div>
+            <div class="image"><img src="~/images/ProgressBar.gif" /></div>
         </div>
 
-        <div class="pull-right">
-            <a href="javascript:;" class="btn btn-default" v-on:click="clearLog">Clear log</a>
-        </div>
+        <div id="joblog" style="display: none;">
 
-        <div class="lead">Run log</div>
+            <div class="alert alert-warning fade in alert-dismissable" v-if="alertText!==''">
+                {{alertText}}.
+            </div>
 
-        <div class="table-responsive" v-if="Errors.length > 0">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th><a href="javascript:;">Error description</a></th>
-                        <th><a href="javascript:;">Error location</a></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="error of Errors">
-                        <td>{{error.Description.substring(0,900)}}</td>
-                        <td>{{error.Location}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="table-responsive" v-if="Errors.length > 0">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><a href="javascript:;">Error description</a></th>
+                            <th><a href="javascript:;">Error location</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="error of Errors">
+                            <td>{{error.Description.substring(0,900)}}</td>
+                            <td>{{error.Location}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-        <div id="logdiv" class="loginfo panel panel-default">
-            <div class="panel-body">
-                <div class="clearfix">
-                    <div class="pull-left alert-dismissable" v-for="item in LogFileContent">
-                        <p class="time">{{item.substring(0,22)}}</p>
+            <div class="pull-right">
+                <a href="javascript:;" class="btn btn-default" v-on:click="clearLog">Clear log</a>
+            </div>
+
+            <div class="lead size-fixed">Run log</div>
+
+            <div id="logdiv" class="loginfo panel panel-default">
+                <div class="panel-body">
+
+                    <div class="overflow-box">
+                        <div class="log-row" v-for="item in LogFileContent">
+                            <span class="log-item time">{{item.substring(0,22)}}</span>
+                            <span class="log-item info">{{item.substring(22)}}</span>
+                        </div>
                     </div>
-                    <div class="pull-left alert-dismissable">
-                        <p class="info">{{item.substring(22)}}</p>
-                    </div>
+
                 </div>
             </div>
-        </div>
 
 
-    </div><!-- /#joblog -->
+        </div><!-- /#joblog -->
+    </div><!-- /.tab-pane -->
 </div><!-- /.tab-content -->
 
 @section scripts{

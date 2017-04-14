@@ -93,7 +93,7 @@
 
 .panel-tabs .tab-pane.panel-body {
     border-color: #ddd;
-    min-height: 300px;
+    min-height: 350px;
     position: relative;
 }
 
@@ -105,7 +105,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
 }
 
 .loading .text {

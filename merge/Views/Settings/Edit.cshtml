@@ -4,13 +4,15 @@
 
 @Html.Partial("_MainTabs", "Settings")
 
-<div class="tab-content panel panel-default">
-    <div class="loading" id="settingsedit-loading">
-        <div class="text">Loading....</div>
-        <div class="image"><img src="~/images/ProgressBar.gif" /></div>
-    </div>
-    <div class="tab-pane panel-body" id="settingsedit">
-        <div class="max-container">
+<div class="tab-content panel panel-default panel-tabs">
+    <div class="tab-pane panel-body active">
+
+        <div class="loading" id="settingsedit-loading">
+            <div class="text">Loading....</div>
+            <div class="image"><img src="~/images/ProgressBar.gif" /></div>
+        </div>
+
+        <div class="max-container" id="settingsedit" style="display: none;">
 
             @*<a asp-area="" asp-controller="Jobs" asp-action="Index" role="button" class="btn  btn-default">@SiteResource.EditTask_BackToTasks</a>*@
 
@@ -19,10 +21,8 @@
                 <a href="javascript:;" class="btn btn-default" v-bind:disabled="!canRevert" v-on:click="revertChanges">Revert</a>
             </div>
 
-            <div v-if="GlobalAlertText!=''">
-                <div class="alert alert-warning">
-                    <strong>Warning!</strong> {{GlobalAlertText}}
-                </div>
+            <div class="alert alert-warning fade in alert-dismissable" v-if="GlobalAlertText!=''">
+                {{GlobalAlertText}}
             </div>
 
             <form id="settingsedit-form" class="form-horizontal" role="form">
@@ -52,6 +52,7 @@
                     <div class="col-sm-10">
                         <filepicker name="licenseKeyFile" header="License key" scope="license_key" placeholder="License key..." v-model="LicenseKeyFile" pickertype="file" browse-title="Browse..." :disabled="!canEdit"></filepicker>
                         @*<small class="form-text text-muted">Provide a full path to your EasyMorph Server license key</small>*@
+                        <span class="help-block success">License key matches the signature.</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -82,9 +83,9 @@
                 </div>
             </div>*@
 
-        </div>
-    </div>
-</div>
+        </div><!-- /#settingsedit -->
+    </div><!-- /.tab-pane -->
+</div><!-- /.tab-content -->
 
 @section scripts
 {

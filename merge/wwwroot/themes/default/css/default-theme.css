@@ -1,11 +1,16 @@
 ﻿body {
     padding-top: 70px; /*navbar-fixed-top.css*/
 }
+
+.container {
+    min-width: 290px; /*320px width - 30px padding*/
+}
+
 .navbar {
     border: 0;
     border-radius: 0;
-    
 }
+
 .navbar-inverse {
     /*background-color: #3961b6;*/
     background-color: #286090;
@@ -66,95 +71,158 @@
     border: 0;
 }
 
-.nav-tabs {
+.nav-tabs.navigation {
     margin-left: 3px;
     margin-right: 3px;
 }
 
-.nav-tabs > li {
+.nav-tabs.navigation > li {
     margin-left: -3px;
 }
 
-.tab-content.panel {
+.tab-content.panel-tabs {
     border-radius: 0;
     border: 0;
 }
 
-.tab-pane.panel-body {
+.panel-tabs .tab-pane.panel-body {
     border-radius: 4px;
     border: 1px solid transparent;
     border-top: 0;
 }
 
-.panel-default .tab-pane.panel-body {
+.panel-tabs .tab-pane.panel-body {
     border-color: #ddd;
+    min-height: 350px;
+    position: relative;
 }
 
-.tab-pane.panel-body.active:first-of-type {
+.panel-tabs .tab-pane.panel-body.active:first-of-type {
     border-radius: 0 4px 4px 4px;
-}
-
-.loginfo {
-    overflow: auto;
-    height: 400px;
-    line-height: 1.5;
-    background-color: black;
-    color: white;
-    border: 0;
-    border-radius: 0;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-    word-wrap: break-word;
-    margin-bottom: 0;
-}
-
-.loginfo p {
-    padding: 0;
-    margin: 0;
-}
-
-/*
-.loginfo p {
-    white-space: pre;
-    font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
-}
-*/
-
-.loginfo p.time {
-    white-space: pre;
-    color: gray;
-}
-
-.loginfo p.info {
-    white-space: pre-wrap;
-}
-
-td.action {
-    padding: 5px 8px !important;
-}
-
-td.remove {
-    text-align: right;
-}
-
-.max-container {
-    max-width: 800px;
 }
 
 .loading {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
 }
 
 .loading .text {
     font-weight: bold;
 }
 
-.loading .image {
+.lead.size-fixed {
+    font-size: 21px !important;
+    padding-top: 2px;
+}
+
+.loginfo {
+    color: white;
+    background-color: black;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.loginfo .overflow-box {
+    height: 400px;
+}
+
+.loginfo p {
+    line-height: 1.4;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.loginfo {
+    font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.loginfo .log-row {
+    white-space: nowrap;
+}
+
+.loginfo .log-item {
+    white-space: pre;
+}
+
+.loginfo .time {
+    color: gray;
+    margin-right: 30px;
+}
+
+.max-container {
+    max-width: 800px;
+}
+
+.abs-container {
+    position: relative;
+}
+
+.abs-equally,
+.abs-trash {
+    position: absolute;
+    top: 0;
+    right: -7px;
+    font-size: 20px;
+    color: #bbb;
+    line-height: 30px;
+}
+
+.abs-trash {
+    right: -15px;
+}
+
+.help-block.success {
+    color: #3c763d;
+}
+
+.overflow-box {
+    min-height: .01%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.table.tasks th.icon {
+    min-width: 0;
+}
+
+.table.tasks td.action {
+    padding: 5px 8px !important;
+}
+
+.table.tasks td.remove {
+    text-align: right;
+}
+
+.table.tasks th:nth-child(2) {
+    width: 30%;
+    min-width: 150px;
+}
+
+.table.tasks th:nth-child(3) {
+    width: 15%;
+    white-space: nowrap;
+}
+
+.table.tasks th:nth-child(4) {
+    width: 15%;
+}
+
+.table.tasks th:nth-child(5) {
+    width: 40%;
+    min-width: 150px;
+}
+
+.table.tasks [colspan] {
+    border: 0;
+    padding-top: 10px;
+}
+
+.table.tasks > .separator,
+.table.tasks > .separator + thead > tr:first-child > th {
+    border-top: 0;
 }
 
 .inactive {
@@ -265,25 +333,8 @@ td.remove {
         display: none;
     }
 }
-
-.abs-container {
-    position: relative;
-}
-
-.abs-equally,
-.abs-trash {
-    position: absolute;
-    top: 0;
-    right: -7px;
-    font-size: 20px;
-    color: #bbb;
-    line-height: 30px;
-}
-
-.abs-trash {
-    right: -15px;
-}
-
+/*
 .schedule-checkbox-list .checkbox:first-of-type {
     padding-top: 0;
 }
+*/
