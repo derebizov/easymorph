@@ -7,10 +7,6 @@
     <title>Administration Panel</title>
     <link type="image/x-icon" href="favicon.ico?v=1.0" rel="icon" />
     <link type="image/x-icon" href="favicon.ico?v=1.0" rel="shortcut icon" />
-    <!-- Latest compiled and minified CSS -->
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /-->
-    <!-- Optional theme -->
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" /-->
     <link rel="stylesheet" href="assets/bootstrap-3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
     <!--link rel="stylesheet" href="assets/css/navbar-fixed-top.css" /-->
@@ -18,7 +14,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-inverse"> <!--navbar-fixed-top-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
 
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -51,98 +47,118 @@
     </nav>
 
     <div class="container">
-        <ul class="nav nav-tabs">
-            <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
-            <li class="active"><a href="#new-task" data-toggle="tab">Tasks</a></li>
+        <ul class="nav nav-tabs navigation">
+            <li class="active"><a href="#tasks" data-toggle="tab">Tasks</a></li>
             <li><a href="#log" data-toggle="tab">Log</a></li>
-            <li><a href="#settings-1" data-toggle="tab">Settings</a></li>
-            <li><a href="#settings-2" data-toggle="tab">Settings</a></li>
+            <li><a href="#settings" data-toggle="tab">Settings</a></li>
         </ul>
-        <div class="tab-content panel panel-default">
-            <div class="tab-pane panel-body" id="tasks">
+        <div class="tab-content panel panel-default panel-tabs">
+            <div class="tab-pane panel-body active" id="tasks">
+
+                <!--<div class="loading" id="jobTasks-loading">
+                    <div class="text">Loading....</div>
+                    <div class="image"><img src="~/images/ProgressBar.gif" /></div>
+                </div>-->
 
                 <div class="form-group">
                     <button type="button" class="btn btn-primary">New task</button>
                 </div>
 
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div class="overflow-box">
+                    <table class="table tasks">
                         <thead>
                             <tr>
-                                <th><a href="javascript:;">Tasks</a></th>
+                                <th class="icon"></th>
+                                <th><a href="javascript:;">Task</a></th>
                                 <th>Schedule</th>
                                 <th><a href="javascript:;">Status</a></th>
+                                <th>Note</th>
+                                <th class="icon"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td class="action"><!--Run--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAkFBMVEUAmQj///8AmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQj///8RoBglqCxDtElow22X1Zq75L285L7Z8Nrt+O7u+O/6/fr7/fsEmww4cPa8AAAAIXRSTlMAAB4fICEiTldYWVpvcXN3eKWmp7i51+Pk8vP4+fr8/f54DOiZAAAAvElEQVR4Xp3S6RKCIBQFYEIrbdNEizAjaN/f/+2aQbygODTT+ck3gF4OGnjyC1EdnBbrkq3ydKgXDOJsJ3R4hts43ggrbGLjjItW9nOD0V6D0ahBzIQThjUuRU9IjQFcePkY5IHCBBbk9WA0UZgblPcjYK6QWigfpwapwtJG+Tpr3PbgG9A99tk5tvB9UGLw5vxK2D+EUCEinvH5B49i98liz2MvPDWZdgpGYDMnUDC7mrSqaJGOoJr/N/4LCwo6toGYlq4AAAAASUVORK5CYII=" alt="" /></td>
                                 <td>Product1</td>
                                 <td>23/11/2013</td>
                                 <td>Pending</td>
+                                <td>Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
                             </tr>
                             <tr>
+                                <td class="action"><!--Stop--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTJDBGvsAAABOElEQVRIS82WvbHCMBCEKYSAgLIIGcUUQEAvFEABBJRDAS94od4usq2Tbhk9G9uDZr4Z+7x3O/o525sY46rI4JLIoCOEHTiDO3iC2MFrxvhsJ3MrZHAghC24gt6gBbVbWatDBl+EcAA/XaExMOcgawIZRMLJFJjKSdV2AQg5M1VgCm6mxQ0E3LMpy/gO1ir2tDYcc0D+y9V6WDMefZUwB0PLWEP2khInWkPlZM5QOEM2sBInWkPlZO5QOEP7BvG0hsrJPKFwhkqYaQ2VY/kGw9WXdMlD84DCGV4qUUlrqJzMBQpnuHLjJ9NbJZyDm/WoDffg14g/hbX21qM0JCEcTcKnHOv6xc3Aqh/gnjTTKcvLHDezHhkcSHs65iBRW+xZjQw6UsuwTx+g/k1kjM9m+E1cABlcjrj5Ay9G9F00BAmqAAAAAElFTkSuQmCC" alt="" /></td>
                                 <td>Product2</td>
                                 <td>10/11/2013</td>
                                 <td>Delivered</td>
+                                <td>Complete simple sign-up process. Complete simple sign-up process. Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
                             </tr>
                             <tr>
+                                <td class="action"><!--Stopping--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xMzQDW3oAAAE6SURBVEhLxZaxDcIwFEQZhIIiY6VkAAZIwRqpGYABKBiHASgozR2K0ff/h0wSEiw9ifzc/ZNjO2STUloVWVwSWfT0fb8DHbiAG0gD/M0a7+2U1yOLGTTZghPIATWo3apeGVkkMLbgPjQaAz2t6klkEYaDaTCVg+odChByZqrBFMJMiwsIuGZTHuMn2KtYUx84ZoN8y8lm2DBufWX4Be8jYwN5lpT4RW0oj6GDJATyACvxi9pQHsMFkhBo3yCB2lAeww2SEKiEb2pDeSwY/w9c/ZEuuWmukITAoxMV1IbyGI6QhMB1D/4QenbCX3C2GT6wAQ8jngt7NTajCCQQ7I1hLnvfv7jIQLjeH3AGBs50yuOlJ8wsI4sZGLmmYzYStcWaeWTRgyY8MjynV+A/E1njvfmfiUsgi8uRNk80M/RdJV1rPQAAAABJRU5ErkJggg==" alt="" /></td>
                                 <td>Product3</td>
                                 <td>20/10/2013</td>
                                 <td>In Call to confirm</td>
+                                <td>Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
                             </tr>
                             <tr>
+                                <td class="action"><!--Run--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAkFBMVEUAmQj///8AmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQj///8RoBglqCxDtElow22X1Zq75L285L7Z8Nrt+O7u+O/6/fr7/fsEmww4cPa8AAAAIXRSTlMAAB4fICEiTldYWVpvcXN3eKWmp7i51+Pk8vP4+fr8/f54DOiZAAAAvElEQVR4Xp3S6RKCIBQFYEIrbdNEizAjaN/f/+2aQbygODTT+ck3gF4OGnjyC1EdnBbrkq3ydKgXDOJsJ3R4hts43ggrbGLjjItW9nOD0V6D0ahBzIQThjUuRU9IjQFcePkY5IHCBBbk9WA0UZgblPcjYK6QWigfpwapwtJG+Tpr3PbgG9A99tk5tvB9UGLw5vxK2D+EUCEinvH5B49i98liz2MvPDWZdgpGYDMnUDC7mrSqaJGOoJr/N/4LCwo6toGYlq4AAAAASUVORK5CYII=" alt="" /></td>
                                 <td>Product4</td>
                                 <td>20/10/2013</td>
                                 <td>Declined</td>
+                                <td>Complete simple sign-up process. Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
+                            </tr>
+                        </tbody>
+                        <tbody class="separator">
+                            <tr><td colspan="6"></td></tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th class="icon"></th>
+                                <th><a href="javascript:;">Task</a></th>
+                                <th>Schedule</th>
+                                <th><a href="javascript:;">Status</a></th>
+                                <th>Note</th>
+                                <th class="icon"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="danger">
+                                <td class="action"><!--Run--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAkFBMVEUAmQj///8AmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQj///8RoBglqCxDtElow22X1Zq75L285L7Z8Nrt+O7u+O/6/fr7/fsEmww4cPa8AAAAIXRSTlMAAB4fICEiTldYWVpvcXN3eKWmp7i51+Pk8vP4+fr8/f54DOiZAAAAvElEQVR4Xp3S6RKCIBQFYEIrbdNEizAjaN/f/+2aQbygODTT+ck3gF4OGnjyC1EdnBbrkq3ydKgXDOJsJ3R4hts43ggrbGLjjItW9nOD0V6D0ahBzIQThjUuRU9IjQFcePkY5IHCBBbk9WA0UZgblPcjYK6QWigfpwapwtJG+Tpr3PbgG9A99tk5tvB9UGLw5vxK2D+EUCEinvH5B49i98liz2MvPDWZdgpGYDMnUDC7mrSqaJGOoJr/N/4LCwo6toGYlq4AAAAASUVORK5CYII=" alt="" /></td>
+                                <td>Product1 Product1 Product1 Product1 Product1 Product1 Product1 Product1</td>
+                                <td>23/11/2013</td>
+                                <td>Pending</td>
+                                <td>Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
+                            </tr>
+                            <tr class="danger">
+                                <td class="action"><!--Stop--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTJDBGvsAAABOElEQVRIS82WvbHCMBCEKYSAgLIIGcUUQEAvFEABBJRDAS94od4usq2Tbhk9G9uDZr4Z+7x3O/o525sY46rI4JLIoCOEHTiDO3iC2MFrxvhsJ3MrZHAghC24gt6gBbVbWatDBl+EcAA/XaExMOcgawIZRMLJFJjKSdV2AQg5M1VgCm6mxQ0E3LMpy/gO1ir2tDYcc0D+y9V6WDMefZUwB0PLWEP2khInWkPlZM5QOEM2sBInWkPlZO5QOEP7BvG0hsrJPKFwhkqYaQ2VY/kGw9WXdMlD84DCGV4qUUlrqJzMBQpnuHLjJ9NbJZyDm/WoDffg14g/hbX21qM0JCEcTcKnHOv6xc3Aqh/gnjTTKcvLHDezHhkcSHs65iBRW+xZjQw6UsuwTx+g/k1kjM9m+E1cABlcjrj5Ay9G9F00BAmqAAAAAElFTkSuQmCC" alt="" /></td>
+                                <td>Product2</td>
+                                <td>10/11/2013</td>
+                                <td>Delivered</td>
+                                <td>Complete simple sign-up process. Complete simple sign-up process. Complete simple sign-up process. Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
+                            </tr>
+                            <tr class="danger">
+                                <td class="action"><!--Stopping--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xMzQDW3oAAAE6SURBVEhLxZaxDcIwFEQZhIIiY6VkAAZIwRqpGYABKBiHASgozR2K0ff/h0wSEiw9ifzc/ZNjO2STUloVWVwSWfT0fb8DHbiAG0gD/M0a7+2U1yOLGTTZghPIATWo3apeGVkkMLbgPjQaAz2t6klkEYaDaTCVg+odChByZqrBFMJMiwsIuGZTHuMn2KtYUx84ZoN8y8lm2DBufWX4Be8jYwN5lpT4RW0oj6GDJATyACvxi9pQHsMFkhBo3yCB2lAeww2SEKiEb2pDeSwY/w9c/ZEuuWmukITAoxMV1IbyGI6QhMB1D/4QenbCX3C2GT6wAQ8jngt7NTajCCQQ7I1hLnvfv7jIQLjeH3AGBs50yuOlJ8wsI4sZGLmmYzYStcWaeWTRgyY8MjynV+A/E1njvfmfiUsgi8uRNk80M/RdJV1rPQAAAABJRU5ErkJggg==" alt="" /></td>
+                                <td>Product3</td>
+                                <td>20/10/2013</td>
+                                <td>In Call to confirm</td>
+                                <td>Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
+                            </tr>
+                            <tr>
+                                <td class="action"><!--Run--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAkFBMVEUAmQj///8AmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQj///8RoBglqCxDtElow22X1Zq75L285L7Z8Nrt+O7u+O/6/fr7/fsEmww4cPa8AAAAIXRSTlMAAB4fICEiTldYWVpvcXN3eKWmp7i51+Pk8vP4+fr8/f54DOiZAAAAvElEQVR4Xp3S6RKCIBQFYEIrbdNEizAjaN/f/+2aQbygODTT+ck3gF4OGnjyC1EdnBbrkq3ydKgXDOJsJ3R4hts43ggrbGLjjItW9nOD0V6D0ahBzIQThjUuRU9IjQFcePkY5IHCBBbk9WA0UZgblPcjYK6QWigfpwapwtJG+Tpr3PbgG9A99tk5tvB9UGLw5vxK2D+EUCEinvH5B49i98liz2MvPDWZdgpGYDMnUDC7mrSqaJGOoJr/N/4LCwo6toGYlq4AAAAASUVORK5CYII=" alt="" /></td>
+                                <td>Product4</td>
+                                <td>20/10/2013</td>
+                                <td>Declined</td>
+                                <td>Complete simple sign-up process.</td>
+                                <td class="remove"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
-            </div>
-            <div class="tab-pane panel-body active" id="new-task">
-
-                <div class="form-group">
-                    <label class="control-label text-nowrap pull-right"><input type="checkbox" class="custom-control-input"> Task disabled</label>
-
-                    <span class="alert-dismissable">
-                        <button type="button" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
-                            Back to tasks
-                        </button>
-                    </span>
-
-                    <a href="javascript:;" disabled="disabled" class="btn btn-primary">Apply</a>
-                    <a href="javascript:;" disabled="disabled" class="btn btn-default">Revert</a>
-                </div>
-
-                <div class="form-group">
-                    
-                </div>
-
-                <form role="form" class="form-horizontal" novalidate="novalidate">
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Project</label>
-                        <div class="col-xs-9">
-                            <div class="input-group">
-                                <input type="text" name="projectFile" placeholder="Morph file.." class="form-control">
-                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse...</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Project parameters</label>
-                        <div class="col-xs-9">
-                            <a href="javascript:;" class="btn btn-default btn-block">Assign more parameters</a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-3">Schedule</label>
-                        <div class="col-xs-9">
-                            <select name="scheduleType"  class="form-control" tabindex="-98"><option value="NoSchedule">Not scheduled</option> <option value="OnceSchedule">Once</option> <option value="HourlySchedule">Hourly</option> <option value="DailySchedule">Daily</option></select>
-                        </div>
-                    </div>
-                </form>
 
             </div>
             <div class="tab-pane panel-body" id="log">
@@ -151,287 +167,380 @@
                     <a href="javascript:;" class="btn btn-default">Clear log</a>
                 </div>
 
-                <div class="lead">Server log</div>
+                <div class="lead size-fixed">Server log</div>
 
                 <div id="logdiv" class="loginfo panel panel-default">
+
                     <div class="panel-body">
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
+                        <div class="overflow-box">
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <div class="pull-left alert-dismissable">
-                                <p class="time">03.04.2017 16:05:04</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="info">000001 INFO</p>
-                            </div>
-                            <div class="pull-left alert-dismissable">
-                                <p class="jobs">0 jobs loaded successfully.</p>
+                            <div class="log-row">
+                                <span class="log-item time">03.04.2017 16:05:04</span>
+                                <span class="log-item info">000001 INFO      0 jobs loaded successfully.</span>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-            <div class="tab-pane panel-body" id="settings-1">
+            <div class="tab-pane panel-body" id="settings">
+                <div class="max-container">
 
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-default">Revert</button>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default">Revert</button>
+                    </div>
+
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Projects folder</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Projects folder" class="form-control">
+                                    <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">System folder</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Projects folder" class="form-control">
+                                    <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Logs folder</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Projects folder" class="form-control">
+                                    <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">License key</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Projects folder" class="form-control">
+                                    <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                                </div>
+                                <span class="help-block success">License key matches the signature.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Repository</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Projects folder" class="form-control">
+                                    <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Signature</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
-
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Projects folder</label>
-                        <div class="col-xs-8">
-                            <input class="form-control" type="text" value="Artisanal kale" />
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-primary btn-block">Browse</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">System folder</label>
-                        <div class="col-xs-8">
-                            <input class="form-control" type="text" value="Artisanal kale" />
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-primary btn-block">Browse</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Logs folder</label>
-                        <div class="col-xs-8">
-                            <input class="form-control" type="text" value="Artisanal kale" />
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-primary btn-block">Browse</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">License key</label>
-                        <div class="col-xs-8">
-                            <input class="form-control" type="text" value="Artisanal kale" />
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-primary btn-block">Browse</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Repository</label>
-                        <div class="col-xs-8">
-                            <input class="form-control" type="text" value="Artisanal kale" />
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-primary btn-block">Browse</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Signature</label>
-                        <div class="col-xs-8">
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-primary btn-block">Copy</button>
-                        </div>
-                    </div>
-                </form>
-
-            </div><!-- /#settings-1 -->
-            <div class="tab-pane panel-body" id="settings-2">
-
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-default">Revert</button>
-                </div>
-
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Projects folder</label>
-                        <div class="col-xs-10">
-                            <div class="input-group">
-                                <input type="text" placeholder="Projects folder" class="form-control">
-                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">System folder</label>
-                        <div class="col-xs-10">
-                            <div class="input-group">
-                                <input type="text" placeholder="Projects folder" class="form-control">
-                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Logs folder</label>
-                        <div class="col-xs-10">
-                            <div class="input-group">
-                                <input type="text" placeholder="Projects folder" class="form-control">
-                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">License key</label>
-                        <div class="col-xs-10">
-                            <div class="input-group">
-                                <input type="text" placeholder="Projects folder" class="form-control">
-                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Repository</label>
-                        <div class="col-xs-10">
-                            <div class="input-group">
-                                <input type="text" placeholder="Projects folder" class="form-control">
-                                <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse</a></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Signature</label>
-                        <div class="col-xs-10">
-                            <div class="input-group">
-                                <textarea class="form-control custom-control" rows="3" style="resize:none"></textarea>
-                                <span class="input-group-addon btn btn-primary">Copy</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-2">Signature</label>
-                        <div class="col-xs-8">
-                            <textarea class="form-control" rows="5" id="comment"></textarea>
-                        </div>
-                        <div class="col-xs-2">
-                            <button type="button" class="btn btn-primary btn-block">Copy</button>
-                        </div>
-                    </div>
-                </form>
-
             </div><!-- /#settings-2 -->
         </div><!-- /.tab-content -->
-
-        <div class="panel panel-default">
-            <div class="panel-heading">Panel Heading</div>
-            <div class="panel-body">Panel Content</div>
-        </div>
     </div><!-- /.container -->
 
     <div class="container">
-        <ul class="nav nav-pills nav-stacked col-md-2">
-            <li class="active"><a href="#tab_a" data-toggle="pill">Pill A</a></li>
-            <li><a href="#tab_b" data-toggle="pill">Pill B</a></li>
-            <li><a href="#tab_c" data-toggle="pill">Pill C</a></li>
-            <li><a href="#tab_d" data-toggle="pill">Pill D</a></li>
+        <div class="form-group">
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+                Back to tasks
+            </button>
+        </div>
+
+        <ul class="nav nav-tabs navigation">
+            <li class="active"><a href="#task-properties" data-toggle="tab">Task properties</a></li>
+            <li><a href="#task-log" data-toggle="tab">Log</a></li>
         </ul>
-        <div class="tab-content col-md-10">
-            <div class="tab-pane active" id="tab_a">
-                <h4>Pane A</h4>
-                <p>
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                    ac turpis egestas.
-                </p>
+        <div class="tab-content panel panel-default panel-tabs">
+            <div class="tab-pane panel-body active" id="task-properties">
+                <div class="max-container">
+
+                    <div class="form-group">
+                        <div class="pull-right form-horizontal">
+                            <label class="checkbox-inline"><input type="checkbox"><b>Task disabled</b></label>
+                        </div>
+
+                        <a href="javascript:;" disabled="disabled" class="btn btn-primary">Save changes</a>
+                        <a href="javascript:;" disabled="disabled" class="btn btn-default">Revert</a>
+                    </div>
+
+                    <form role="form" novalidate="novalidate">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Project</label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="text" name="projectFile" placeholder="Morph file.." class="form-control">
+                                        <span class="input-group-btn"><a href="javascript:;" class="btn btn-default">Browse...</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Note</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="projectFile" placeholder="Some description of the project" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Project parameters</label>
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <div class="col-xs-4 col-sm-3 abs-container">
+                                            <input type="text" class="form-control" placeholder="Date" />
+                                            <div class="abs-equally">&#61</div>
+                                        </div>
+                                        <div class="col-xs-7 col-sm-8 col-md-9 abs-container">
+                                            <input type="text" class="form-control" placeholder="2016-12-11" />
+                                            <div class="abs-trash">
+                                                <a href="javascript:;"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-4 col-sm-3 abs-container">
+                                            <input type="text" class="form-control" placeholder="Input file" />
+                                            <div class="abs-equally">&#61</div>
+                                        </div>
+                                        <div class="col-xs-7 col-sm-8 col-md-9 abs-container">
+                                            <input type="text" class="form-control" placeholder="C:\Windows" />
+                                            <div class="abs-trash">
+                                                <a href="javascript:;"><!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:;" class="btn btn-default">Assign more parameters</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="control-label col-sm-3" style="color:red;">Schedule</label>
+                                <div class="col-sm-9 form-inline">
+                                    <select class="form-control"><option>Daily/Weekly</option></select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                            Sunday
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                            Monday
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                            Tuesday
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                            Wednesday
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                            Thursday
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                            Friday
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="form-check-input" type="checkbox" value="" />
+                                            Saturday
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Time</label>
+                                <div class="col-sm-9 form-inline">
+                                    <div class="input-group date"><input type="text" name="onceOccurrenceDate" class="form-control"> <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="form-group row">
+                            <div class="col-sm-3 form-horizontal">
+                                <label class="control-label btn-block">Time</label>
+                            </div>
+                            <div class="col-sm-9 form-inline">
+                                <select class="form-control"><option>10:00</option></select>
+                                <span class="checkbox-inline">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                        am
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                        pm
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        -->
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" style="color:red;">Schedule</label>
+                                <div class="col-sm-9 form-inline">
+                                    <select class="form-control"><option>Hourly</option></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Every hour at</label>
+                                <div class="col-sm-9 form-inline">
+                                    <select class="form-control"><option>25</option></select>
+                                    minutes
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-3" style="color:red;">Schedule</label>
+                                <div class="col-sm-9 form-inline">
+                                    <select class="form-control"><option>Once</option></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-3">Once at</label>
+                                <div class="col-sm-9 form-inline">
+                                    <div class="input-group date"><input type="text" name="onceOccurrenceDate" class="form-control"> <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
             </div>
-            <div class="tab-pane" id="tab_b">
-                <h4>Pane B</h4>
-                <p>
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                    ac turpis egestas.
-                </p>
-            </div>
-            <div class="tab-pane" id="tab_c">
-                <h4>Pane C</h4>
-                <p>
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                    ac turpis egestas.
-                </p>
-            </div>
-            <div class="tab-pane" id="tab_d">
-                <h4>Pane D</h4>
-                <p>
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames
-                    ac turpis egestas.
-                </p>
-            </div>
-        </div><!-- tab content -->
-    </div><!-- end of container -->
+            <div class="tab-pane panel-body" id="task-log">
+
+                <div class="alert alert-warning fade in alert-dismissable">
+                    <!--<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>-->
+                    <strong>Warning!</strong> This alert box indicates a warning that might need attention.
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><a href="javascript:;">Error description</a></th>
+                                <th><a href="javascript:;">Error location</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Column [AAA] not found.</td>
+                                <td>Transformation Remove Columns in Table 1.</td>
+                            </tr>
+                            <tr>
+                                <td>Data quality check failed.</td>
+                                <td>Transformation Halt in Table 3.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pull-right">
+                    <a href="javascript:;" class="btn btn-default">Clear log</a>
+                </div>
+
+                <div class="lead size-fixed">Run log</div>
+
+                <div class="table-responsive">
+                    <div id="logdiv" class="loginfo panel panel-default">
+
+                        <div class="panel-body">
+                            <div class="overflow-box">
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Started.</span>
+                                </div>
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Started.</span>
+                                </div>
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Started.</span>
+                                </div>
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Started.</span>
+                                </div>
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Started.</span>
+                                </div>
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Started.</span>
+                                </div>
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Finished.</span>
+                                </div>
+                                <div class="log-row">
+                                    <span class="log-item time">03.04.2017 16:05:04</span>
+                                    <span class="log-item info">INFO      Finished.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- /#settings-2 -->
+        </div><!-- /.tab-content -->
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script-->

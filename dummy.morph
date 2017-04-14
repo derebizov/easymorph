@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Version="7" AppVersion="3.3.1.2" AutoRun="true" ShowCalculatedParameters="true" UseCustomFileNameForPdfExport="false" ShowPageBorders="true" SelectedTabName="Tab 1">
+  <Tabs>
+    <Tab Name="Tab 1" IncludeInReport="true">
+      <ModelObjects>
+        <Table Name="Table 1" Left="91" Top="84" Width="350" Height="524" IsMinimized="false" IsReportObjectRemoved="false" SelectedTransformationIndex="0">
+          <Columns>
+            <Column Name="Count" />
+          </Columns>
+          <Transformations>
+            <SequenceTransformation>
+              <Count Value="A" Type="Parameter" />
+            </SequenceTransformation>
+            <ExportDelimitedTextTransformation Separator="Comma" Encoding="ASCII" WrapTextMode="Auto" DontWriteColumnHeaders="false" PreserveFormatting="false">
+              <FileName Value="dummy.csv" Type="Path" />
+            </ExportDelimitedTextTransformation>
+          </Transformations>
+        </Table>
+      </ModelObjects>
+      <ReportObjects />
+    </Tab>
+  </Tabs>
+  <Parameters>
+    <Parameter Name="A" Type="Text" Value="10" />
+  </Parameters>
+  <DataConnectors />
+  <Resources />
+  <PageSetup Size="Letter" Orientation="Landscape" Margin="Narrow" />
+</Project>
