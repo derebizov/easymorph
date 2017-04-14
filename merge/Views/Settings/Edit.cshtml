@@ -1,0 +1,98 @@
+﻿@using Morph.Server.WebSite.ViewModels
+@using Morph.Server.BusinessLogic.Types;
+@using System.Globalization;
+
+@Html.Partial("_MainTabs", "Settings")
+
+<div class="tab-content panel panel-default">
+    <div class="loading" id="settingsedit-loading">
+        <div class="text">Loading....</div>
+        <div class="image"><img src="~/images/ProgressBar.gif" /></div>
+    </div>
+    <div class="tab-pane panel-body" id="settingsedit">
+        <div class="max-container">
+
+            @*<a asp-area="" asp-controller="Jobs" asp-action="Index" role="button" class="btn  btn-default">@SiteResource.EditTask_BackToTasks</a>*@
+
+            <div class="form-group">
+                <a href="javascript:;" class="btn btn-primary" v-bind:disabled="!canSave" v-on:click="saveChanges">Save changes</a>
+                <a href="javascript:;" class="btn btn-default" v-bind:disabled="!canRevert" v-on:click="revertChanges">Revert</a>
+            </div>
+
+            <div v-if="GlobalAlertText!=''">
+                <div class="alert alert-warning">
+                    <strong>Warning!</strong> {{GlobalAlertText}}
+                </div>
+            </div>
+
+            <form id="settingsedit-form" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="projectsFolder">Projects folder</label>
+                    <div class="col-sm-10">
+                        <filepicker name="projectsFolder" header="Projects folder" scope="computer_folder" placeholder="Projects folder..." v-model="ProjectsFolder" pickertype="directory" browse-title="Browse..." :disabled="!canEdit"></filepicker>
+                        @*<small class="form-text text-muted">Storage of your *.morph project files</small>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="systemFolder">System folder</label>
+                    <div class="col-sm-10">
+                        <filepicker name="systemFolder" header="System folder" scope="computer_folder" placeholder="System folder..." v-model="SystemFolder" pickertype="directory" browse-title="Browse..." :disabled="!canEdit"></filepicker>
+                        @*<small class="form-text text-muted">Hint</small>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="logsFolder">Logs folder</label>
+                    <div class="col-sm-10">
+                        <filepicker name="logsFolder" header="Logs folder" scope="computer_folder" placeholder="Logs folder..." v-model="LogsFolder" pickertype="directory" browse-title="Browse..." :disabled="!canEdit"></filepicker>
+                        @*<small class="form-text text-muted">Hint</small>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="licenseKeyFile">License key</label>
+                    <div class="col-sm-10">
+                        <filepicker name="licenseKeyFile" header="License key" scope="license_key" placeholder="License key..." v-model="LicenseKeyFile" pickertype="file" browse-title="Browse..." :disabled="!canEdit"></filepicker>
+                        @*<small class="form-text text-muted">Provide a full path to your EasyMorph Server license key</small>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="repositoryFile">Repository</label>
+                    <div class="col-sm-10">
+                        <filepicker name="repositoryFile" header="Repository" scope="repository" placeholder="Repository..." v-model="RepositoryFile" pickertype="file" browse-title="Browse..." v-bind:disabled="!canEdit"></filepicker>
+                        @*<small class="form-text text-muted">Hint</small>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Signature</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
+                </div>
+            </form>
+
+            @*<div class="form-group">
+                <div class="col-xs-offset-2 col-xs-10">
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Remember me</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-10">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>*@
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        require(['settingsedit'], function (jl) {
+            Morph.WebClient.initEditSettings("#settingsedit");
+        })
+
+    </script>
+}

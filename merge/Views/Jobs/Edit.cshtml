@@ -1,0 +1,169 @@
+﻿@using Morph.Server.WebSite.ViewModels
+@using Morph.Server.BusinessLogic.Types;
+@using System.Globalization;
+@model Morph.Server.WebSite.ViewModels.Jobs.JobEditViewModel
+
+<div class="form-group">
+    <a asp-area="" asp-controller="Jobs" asp-action="Index" role="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+        @SiteResource.EditTask_BackToTasks
+    </a>
+</div>
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="javascript:;" data-toggle="tab">@SiteResource.EditTask_TaskProperties</a></li>
+        <li><a asp-area="" asp-controller="Jobs" asp-action="Log" asp-route-id="@Model.JobId">@SiteResource.EditTask_Log</a></li>
+    </ul>
+    <div class="tab-content panel panel-default">
+        <div class="loading" id="jobedit-loading">
+            <div class="text">Loading....</div>
+            <div class="image"><img src="~/images/ProgressBar.gif" /></div>
+        </div>
+        <div class="tab-pane panel-body" id="jobedit">
+            <div class="max-container">
+
+                <div class="form-group">
+                    <div class="pull-right form-horizontal">
+                        <label for="taskDisabled" class="checkbox-inline"><input type="checkbox" id="taskDisabled" v-model="TaskDisabled" /><b>@SiteResource.EditTask_TaskDisabled</b></label>
+                    </div>
+                    <a href="javascript:;" class="btn btn-primary" v-bind:disabled="!canSave" v-on:click="saveChanges">Save changes</a>
+                    <a href="javascript:;" class="btn btn-default" v-bind:disabled="!canRevert" v-on:click="revertChanges">Revert</a>
+                </div>
+
+                <form role="form" novalidate="novalidate">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="projectfilename" class="control-label col-sm-3">Project</label>
+                            <div class="col-sm-9">
+                                <filepicker name="projectFile" header="Path to morph file" scope="morph_projects_root" placeholder="Morph file.." v-model="ProjectFile" pickertype="file" :disabled="TaskDisabled" browse-title="Browse..." :starting-path="MorphProjectsRoot"></filepicker>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Note</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="projectFile" placeholder="Some description of the project" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">@SiteResource.EditTask_ProjectParameters</label>
+                            <div class="col-sm-9">
+
+                                <template v-if="JobParameters.length > 0">
+                                    <!--({{JobParameters.length}})-->
+                                </template>
+
+                                <template v-if="JobParameters.length > 0">
+                                    <template v-for="(param, index) in JobParameters">
+
+                                        <div class="form-group">
+                                            <div class="col-sm-3 abs-container">
+                                                <input v-bind:name="'jobParameters$'+index+'$name'" type="text" class="form-control" placeholder="parameter name..." v-model="param.Name" v-bind:disabled="TaskDisabled" />
+                                                <div class="abs-equally">&#61</div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" placeholder="parameter value..." v-model="param.Value" v-bind:disabled="TaskDisabled" />
+                                                <div class="abs-trash">
+                                                    <a href="javascript:;" v-on:click="removeParam(param, index)" v-bind:disabled="TaskDisabled">
+                                                        @*@SiteResource.EditTask_Delete*@
+                                                        <!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+                                
+                                @*<template v-else>
+                                    <div class="row voffset2">
+                                        <div class="col-xs-6">
+                                            <i>You have not specified any parameters yet</i>
+                                        </div>
+                                    </div>
+                                </template>*@
+
+                                <a href="javascript:;" class="btn btn-default" v-on:click="addParam" v-bind:disabled="TaskDisabled || !canAddNewParam">@SiteResource.EditTask_AssignMoreParameters</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ScheduleType" class="control-label col-sm-3">@SiteResource.EditTask_ScheduleTitle</label>
+                            <div class="col-sm-9 form-inline">
+                                <select class="sp" name="scheduleType" v-bind:disabled="TaskDisabled" v-model="ScheduleType" name="ScheduleType">
+                                    <option value="@ScheduleType.NoSchedule">Not scheduled</option>
+                                    <option value="@ScheduleType.OnceSchedule">Once</option>
+                                    <option value="@ScheduleType.HourlySchedule">Hourly</option>
+                                    <option value="@ScheduleType.DailySchedule">Daily</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row" v-if="ScheduleType==='@ScheduleType.DailySchedule'">
+                            <div class="col-sm-9 col-sm-offset-3 schedule-checkbox-list">
+                                @foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+                                {
+                                    <div class="checkbox">
+                                        <label title="@DateTimeFormatInfo.CurrentInfo.GetDayName(day)" for="@(day.ToString())">
+                                            <input class="form-check-input" type="checkbox" value="@(day.ToString())" title="@DateTimeFormatInfo.CurrentInfo.GetDayName(day)" id="@(day.ToString())" v-model="DaysOfWeek" v-bind:disabled="TaskDisabled" />
+                                            @DateTimeFormatInfo.CurrentInfo.GetAbbreviatedDayName(day)
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-group" v-if="ScheduleType==='@ScheduleType.DailySchedule'">
+                            <label class="control-label col-sm-3">Time</label>
+                            <div class="col-sm-9 form-inline">
+                                <bs-datepicker stepping="15"
+                                               :disabled="TaskDisabled"
+                                               name="dailyOccurrenceTime"
+                                               :format="g11Preferences.timeFormat"
+                                               v-model="DailyOccurrenceTime">
+                                </bs-datepicker>
+                            </div>
+                        </div>
+                        <div class="form-group" v-if="ScheduleType==='@ScheduleType.HourlySchedule'">
+                            <label class="control-label col-sm-3">Every hour at</label>
+                            <div class="col-sm-9 form-inline">
+                                <select v-model="Minute" class="sp">
+                                    <option v-for="minute in hourlyMinutes()" v-bind:value="minute">{{minute}}</option>
+                                </select>
+                                minutes
+                            </div>
+                        </div>
+                        <div class="form-group" v-if="ScheduleType==='@ScheduleType.OnceSchedule'">
+                            <label class="control-label col-sm-3">Once at</label>
+                            <div class="col-sm-9 form-inline">
+                                <bs-datepicker stepping="15"
+                                               :disabled="TaskDisabled"
+                                               name="onceOccurrenceDate"
+                                               :format="g11Preferences.dateTimeFormat"
+                                               v-model="OnceOccurrenceDate">
+                                </bs-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div><!-- /.tab-content -->
+</div><!-- /#jobedit -->
+
+@section scripts{
+    <script>
+        
+        require(['jobedit'], function (jl) {
+
+            Morph.WebClient.initJobEdit(
+                {
+                    selector:  "#jobedit",
+                    editMode: @((int)Model.EditMode),
+                    jobId: '@Model.JobId',
+                    jobDto: $.parseJSON('@Html.Raw(Model.JobJson)'),
+                    morphProjectsRoot:'@Model.MorphProjectsRoot',
+                    g11Preferences: $.parseJSON('@Html.Raw(Model.G11Preferences.AsJson())')
+                });
+        })
+
+    </script>
+}

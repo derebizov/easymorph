@@ -1,0 +1,155 @@
+﻿@using Morph.Server.BusinessLogic
+@using Morph.Server.BusinessLogic.Services
+@{ 
+    var productName = Global.SystemNames.Get(SystemParameterName.ProductName);
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewData["Title"] - @productName</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="image/x-icon" href="~/themes/default/favicon/favicon.ico?v=1.0" rel="icon" />
+    <link type="image/x-icon" href="~/themes/default/favicon/favicon.ico?v=1.0" rel="shortcut icon" />
+
+    <!-- bootstrap styles -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    
+    <!-- easymorth default theme -->
+    <link rel="stylesheet" href="~/themes/default/css/default-theme.css" asp-append-version="true" />
+
+    <environment names="Development">
+    </environment>
+    <environment names="Staging,Production">
+        @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
+    </environment>   
+
+    <!-- plugin styles -->
+    <link rel="stylesheet" href="~/css/bootstrap-select.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/jstree/themes/default/style.css" />
+    <link rel="stylesheet" href="/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+    @await Component.InvokeAsync("EmbedHtml", new { fileName = "themes/default/meta.html" })
+</head>
+<body>
+
+    @await Component.InvokeAsync("EmbedHtml", new { fileName = "themes/default//top-header.html"})
+   
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="~/js/require_full.js"></script>
+    <script type="text/javascript">
+            
+        requirejs.config({
+            urlArgs: "bust=" + (new Date()).getTime(),
+                              
+            paths: {
+                    
+                "jquery": "/lib/jquery/dist/jquery",
+                "bootstrap": "/lib/bootstrap/dist/js/bootstrap",
+                "vue": "/js/vue",
+                "joblist": "/scripts/compiled/JobsList",
+                "jobedit": "/scripts/compiled/JobEdit",
+                "morphcommon": "/scripts/compiled/NotificationsHubClient",
+                "bootbox": "/js/bootbox.min",
+                "bootstrap-select": "/js/bootstrap-select.min",
+                "moment": "/lib/moment/min/moment-with-locales",
+                "eonasdan-bootstrap-datetimepicker": "/js/bootstrap-datetimepicker.min",
+                "vuecomponents": "/scripts/compiled/vuecomponents",
+                "jstree": "/js/jstree.min",
+                "joblog": "/scripts/compiled/JobLog",
+                "serverlog": "/scripts/compiled/ServerLog",
+                "settingsedit": "/scripts/compiled/SettingsEdit",
+                "jquery.validate":'/lib/jquery-validation/dist/jquery.validate.min'
+                    
+            },
+            map: {
+                "*": {
+                    "../typefiles/moment": "moment"
+                }
+            },
+            shim: {
+                "joblist": {
+                    deps: ["jquery", "vue", "bootstrap", "bootbox", "morphcommon"]
+
+                },
+                "jobedit": {
+                    deps: ["jquery", "vue", "bootstrap", "bootbox", "bootstrap-select", "morphcommon", "eonasdan-bootstrap-datetimepicker", "vuecomponents",
+                    "jstree"]
+                },
+                "joblog":{
+                    deps: ["jquery", "vue", "bootstrap", "bootbox",  "morphcommon"]
+                                      
+                },                    
+                "serverlog": {
+                        deps: ["jquery", "vue", "bootstrap", "bootbox",  "morphcommon"]                                      
+                },
+                    
+                "settingsedit": {
+                    deps: ["jquery", "vue", "bootstrap", "bootbox", "morphcommon", "vuecomponents", "jstree"]
+                },
+                "bootbox": {
+                    deps: ["bootstrap"]                       
+
+                },
+                "bootstrap-select": {
+                    deps: ["bootstrap", "jquery"]
+
+                },
+                "eonasdan-bootstrap-datetimepicker": {
+                    deps: ["bootstrap", "jquery","moment"]
+                },
+                "vuecomponents": {
+                    deps: ["eonasdan-bootstrap-datetimepicker", "vue", "jstree", 'jquery.validate']
+
+                }
+            }
+        });
+    </script>
+
+    <script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+    @*<script src="/js/site.min.js" asp-append-version="true"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"  asp-append-version="true"></script>*@
+    @*<script src="~/scripts/lib/system.src.js" asp-append-version="true"></script>*@
+    @*<script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/vue.js" asp-append-version="true"></script>*@
+    @*<script src="~/scripts/vue.js" asp-append-version="true"></script>*@
+    @*<script src="~/js/vue.runtime.min.js"  asp-append-version="true"></script>*@
+
+    <environment names="Development">
+    </environment>
+
+    <environment names="Staging,Production">
+        @*<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/vue.min.js" asp-append-version="true"></script>*@
+    </environment>
+    
+    <script src="/js/jquery.signalr-2.2.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+   
+    <script>
+        var bootbox;        
+            require(["bootbox"], function (_bootbox) {
+                bootbox = _bootbox;
+            });
+        
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

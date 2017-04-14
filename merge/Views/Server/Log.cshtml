@@ -1,0 +1,53 @@
+﻿@using Morph.Server.WebSite.ViewModels
+@using Morph.Server.BusinessLogic.Types;
+@using System.Globalization;
+@model Morph.Server.WebSite.ViewModels.Server.ServerLogViewModel
+
+@Html.Partial("_MainTabs", "Log")
+
+<div class="tab-content panel panel-default">
+    <div class="loading" id="serverlog-loading">
+        <div class="text">Loading....</div>
+        <div class="image"><img src="~/images/ProgressBar.gif" /></div>
+    </div>
+    <div class="tab-pane panel-body" id="serverlog">
+
+        <div class="pull-right">
+            <a href="javascript:;" class="btn btn-default" v-on:click="clearLog">Clear log</a>
+        </div>
+
+        <div class="lead">Server log</div>
+
+        <div id="logdiv" class="loginfo panel panel-default">
+            <div class="panel-body">
+                <div class="clearfix" v-for="item in LogFileContent">
+                    <div class="pull-left alert-dismissable">
+                        <p class="time">{{item.substring(0,22)}}</p>
+                    </div>
+                    <div class="pull-left alert-dismissable">
+                        <p class="info">{{item.substring(22)}}</p>
+                    </div>
+                    <!--<div class="pull-left alert-dismissable">
+                        <p class="jobs">0 jobs loaded successfully.</p>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /#serverlog -->
+</div><!-- /.tab-content -->
+
+@section scripts{
+    <script>
+
+        require(['serverlog'], function (jl) {
+
+            Morph.WebClient.initServerLog(
+                {
+                    selector: "#serverlog",
+                    logContainer: "#logdiv"
+                });
+        })
+
+    </script>
+}

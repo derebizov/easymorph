@@ -1,0 +1,82 @@
+﻿@using Morph.Server.WebSite.ViewModels
+@using Morph.Server.BusinessLogic.Types;
+@using System.Globalization;
+@model Morph.Server.WebSite.ViewModels.Jobs.JobLogViewModel
+
+<div class="form-group">
+    <a asp-area="" asp-controller="Jobs" asp-action="Index" role="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+        @SiteResource.EditTask_BackToTasks
+    </a>
+</div>
+
+<ul class="nav nav-tabs">
+    <li><a asp-area="" asp-controller="Jobs" asp-action="Edit" asp-route-id="@Model.JobId">@SiteResource.EditTask_TaskProperties</a></li>
+    <li class="active"><a href="javascript:;">@SiteResource.EditTask_Log</a></li>
+</ul>
+<div class="tab-content panel panel-default">
+    <div class="loading" id="joblog-loading">
+        <div class="text">Loading....</div>
+        <div class="image"><img src="~/images/ProgressBar.gif" /></div>
+    </div>
+    <div class="tab-pane panel-body" id="joblog">
+
+        <div class="alert alert-warning fade in alert-dismissable" v-if="alertText!==''">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+            <strong>Warning!</strong> {{alertText}}.
+        </div>
+
+        <div class="pull-right">
+            <a href="javascript:;" class="btn btn-default" v-on:click="clearLog">Clear log</a>
+        </div>
+
+        <div class="lead">Run log</div>
+
+        <div class="table-responsive" v-if="Errors.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><a href="javascript:;">Error description</a></th>
+                        <th><a href="javascript:;">Error location</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="error of Errors">
+                        <td>{{error.Description.substring(0,900)}}</td>
+                        <td>{{error.Location}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="logdiv" class="loginfo panel panel-default">
+            <div class="panel-body">
+                <div class="clearfix">
+                    <div class="pull-left alert-dismissable" v-for="item in LogFileContent">
+                        <p class="time">{{item.substring(0,22)}}</p>
+                    </div>
+                    <div class="pull-left alert-dismissable">
+                        <p class="info">{{item.substring(22)}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div><!-- /#joblog -->
+</div><!-- /.tab-content -->
+
+@section scripts{
+    <script>
+
+        require(['joblog'], function (jl) {
+
+            Morph.WebClient.initJobLog(
+                {
+                    selector: "#joblog",
+                    jobId: '@Model.JobId'
+                });
+        })
+
+    </script>
+}

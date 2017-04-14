@@ -1,0 +1,145 @@
+﻿<div class="form-group">
+    <button type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;
+        Back to tasks
+    </button>
+</div>
+
+@Html.Partial("_MainTabs", "Jobs")
+
+<div class="tab-content panel panel-default">
+    <div class="loading" id="jobTasks-loading">
+        <div class="text">Loading....</div>
+        <div class="image"><img src="~/images/ProgressBar.gif" /></div>
+    </div>
+    <div class="tab-pane panel-body" id="jobTasks">
+        <div class="max-container">
+
+            <div class="form-group">
+                <a asp-area="" asp-controller="Jobs" asp-action="Create" role="button" class="btn btn-primary">@SiteResource.NewTask</a>
+            </div>
+
+            <div class="table-responsive" v-if="failedJobs.length > 0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>@SiteResource.FailedTask</th>
+                            <th>@SiteResource.Schedule</th>
+                            <th>@SiteResource.Status</th>
+                            <th>Note</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="job of failedJobs">
+                        <tr class="danger">
+                            <td class="action">
+                                <template v-if="job.status!=='disabled'">
+                                    <a href="javascript:;" v-if="job.status!=='running'" v-on:click="startJob(job)">
+                                        <!--<img src="/images/Run.png" />-->
+                                        <!--Run--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAkFBMVEUAmQj///8AmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQj///8RoBglqCxDtElow22X1Zq75L285L7Z8Nrt+O7u+O/6/fr7/fsEmww4cPa8AAAAIXRSTlMAAB4fICEiTldYWVpvcXN3eKWmp7i51+Pk8vP4+fr8/f54DOiZAAAAvElEQVR4Xp3S6RKCIBQFYEIrbdNEizAjaN/f/+2aQbygODTT+ck3gF4OGnjyC1EdnBbrkq3ydKgXDOJsJ3R4hts43ggrbGLjjItW9nOD0V6D0ahBzIQThjUuRU9IjQFcePkY5IHCBBbk9WA0UZgblPcjYK6QWigfpwapwtJG+Tpr3PbgG9A99tk5tvB9UGLw5vxK2D+EUCEinvH5B49i98liz2MvPDWZdgpGYDMnUDC7mrSqaJGOoJr/N/4LCwo6toGYlq4AAAAASUVORK5CYII=" alt="" />
+                                    </a>
+                                    <a href="javascript:;" v-else v-on:click="stopJob(job)">
+                                        <!--<img src="/images/Stop.png" />-->
+                                        <!--Stop--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTJDBGvsAAABOElEQVRIS82WvbHCMBCEKYSAgLIIGcUUQEAvFEABBJRDAS94od4usq2Tbhk9G9uDZr4Z+7x3O/o525sY46rI4JLIoCOEHTiDO3iC2MFrxvhsJ3MrZHAghC24gt6gBbVbWatDBl+EcAA/XaExMOcgawIZRMLJFJjKSdV2AQg5M1VgCm6mxQ0E3LMpy/gO1ir2tDYcc0D+y9V6WDMefZUwB0PLWEP2khInWkPlZM5QOEM2sBInWkPlZO5QOEP7BvG0hsrJPKFwhkqYaQ2VY/kGw9WXdMlD84DCGV4qUUlrqJzMBQpnuHLjJ9NbJZyDm/WoDffg14g/hbX21qM0JCEcTcKnHOv6xc3Aqh/gnjTTKcvLHDezHhkcSHs65iBRW+xZjQw6UsuwTx+g/k1kjM9m+E1cABlcjrj5Ay9G9F00BAmqAAAAAElFTkSuQmCC" alt="" />
+                                    </a>
+                                </template>
+                            </td>
+                            <td><a v-bind:href="'/jobs/edit/' + job.jobId">{{job.name}}</a></td>
+                            <td>{{job.scheduleAsText}}</td>
+                            <td>
+                                <template v-if="job.status==='failed'">
+                                    <a v-bind:href="'/jobs/log/' + job.jobId">{{job.statusText}}</a>
+                                </template>
+                                <template v-else>
+                                    {{job.statusText}}
+                                </template>
+                            </td>
+                            <td>Todo: Note Note Note Note Note Note Note Note Note Note Note</td>
+                            <td class="remove">
+                                <a href="javascript:;" v-if="job.status!=='running'" v-on:click="deleteJob(job)">
+                                    <!--<img src="/images/Remove.png" />-->
+                                    <!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" />
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <transition name="fade">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <a href="javascript:;" v-on:click="sortBy('name')">
+                                        @SiteResource.Tasks
+                                    </a>
+                                </th>
+                                <th>@SiteResource.Schedule</th>
+                                <th>
+                                    <a href="javascript:;" v-on:click="sortBy('status')">
+                                        @SiteResource.Status
+                                    </a>
+                                </th>
+                                <th>Note</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="job of standartJobs">
+                            <tr>
+                                <td class="action">
+                                    <template v-if="job.status!=='disabled'">
+                                        <a href="javascript:;" v-if="job.status==='running'" v-on:click="stopJob(job)">
+                                            <!--<img src="/images/Stop.png" />-->
+                                            <!--Stop--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTJDBGvsAAABOElEQVRIS82WvbHCMBCEKYSAgLIIGcUUQEAvFEABBJRDAS94od4usq2Tbhk9G9uDZr4Z+7x3O/o525sY46rI4JLIoCOEHTiDO3iC2MFrxvhsJ3MrZHAghC24gt6gBbVbWatDBl+EcAA/XaExMOcgawIZRMLJFJjKSdV2AQg5M1VgCm6mxQ0E3LMpy/gO1ir2tDYcc0D+y9V6WDMefZUwB0PLWEP2khInWkPlZM5QOEM2sBInWkPlZO5QOEP7BvG0hsrJPKFwhkqYaQ2VY/kGw9WXdMlD84DCGV4qUUlrqJzMBQpnuHLjJ9NbJZyDm/WoDffg14g/hbX21qM0JCEcTcKnHOv6xc3Aqh/gnjTTKcvLHDezHhkcSHs65iBRW+xZjQw6UsuwTx+g/k1kjM9m+E1cABlcjrj5Ay9G9F00BAmqAAAAAElFTkSuQmCC" alt="" />
+                                        </a>
+                                        <a href="javascript:;" v-else-if="job.status==='stopping'">
+                                            <!--<img src="/images/Stopping.png" />-->
+                                            <!--Stopping--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4xMzQDW3oAAAE6SURBVEhLxZaxDcIwFEQZhIIiY6VkAAZIwRqpGYABKBiHASgozR2K0ff/h0wSEiw9ifzc/ZNjO2STUloVWVwSWfT0fb8DHbiAG0gD/M0a7+2U1yOLGTTZghPIATWo3apeGVkkMLbgPjQaAz2t6klkEYaDaTCVg+odChByZqrBFMJMiwsIuGZTHuMn2KtYUx84ZoN8y8lm2DBufWX4Be8jYwN5lpT4RW0oj6GDJATyACvxi9pQHsMFkhBo3yCB2lAeww2SEKiEb2pDeSwY/w9c/ZEuuWmukITAoxMV1IbyGI6QhMB1D/4QenbCX3C2GT6wAQ8jngt7NTajCCQQ7I1hLnvfv7jIQLjeH3AGBs50yuOlJ8wsI4sZGLmmYzYStcWaeWTRgyY8MjynV+A/E1njvfmfiUsgi8uRNk80M/RdJV1rPQAAAABJRU5ErkJggg==" alt="" />
+                                        </a>
+                                        <a href="javascript:;" v-else v-on:click="startJob(job)">
+                                            <!--<img src="/images/Run.png" />-->
+                                            <!--Run--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAkFBMVEUAmQj///8AmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQgAmQj///8RoBglqCxDtElow22X1Zq75L285L7Z8Nrt+O7u+O/6/fr7/fsEmww4cPa8AAAAIXRSTlMAAB4fICEiTldYWVpvcXN3eKWmp7i51+Pk8vP4+fr8/f54DOiZAAAAvElEQVR4Xp3S6RKCIBQFYEIrbdNEizAjaN/f/+2aQbygODTT+ck3gF4OGnjyC1EdnBbrkq3ydKgXDOJsJ3R4hts43ggrbGLjjItW9nOD0V6D0ahBzIQThjUuRU9IjQFcePkY5IHCBBbk9WA0UZgblPcjYK6QWigfpwapwtJG+Tpr3PbgG9A99tk5tvB9UGLw5vxK2D+EUCEinvH5B49i98liz2MvPDWZdgpGYDMnUDC7mrSqaJGOoJr/N/4LCwo6toGYlq4AAAAASUVORK5CYII=" alt="" />
+                                        </a>
+                                    </template>
+                                </td>
+                                <td><a v-bind:href="'/jobs/edit/' + job.jobId">{{job.name}}</a></td>
+                                <td>{{job.scheduleAsText}}</td>
+                                <td>
+                                    <template v-if="job.isRunning">
+                                        <a v-bind:href="'/jobs/log/' + job.jobId">{{job.statusText}}</a>
+                                    </template>
+                                    <template v-else>
+                                        {{job.statusText}}
+                                    </template>
+                                </td>
+                                <td>Todo: Note Note Note Note Note Note Note Note Note Note Note</td>
+                                <td class="remove">
+                                    <a href="javascript:;" v-if="!job.isRunning" v-on:click="deleteJob(job)">
+                                        <!--<img src="/images/Remove.png" />-->
+                                        <!--Remove--><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAYFBMVEXm5ub///+ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmxsbGZmZmqqqrU1NS4uLikpKTb29u/v7/Nzc2jo6PGxsbm5ubM0MgYAAAAFHRSTlMAAL/1xjlolyQK2z+urVFSf0CA3EkuhkAAAABrSURBVHheRctJEoAgDETRoOI8y6Si3v+WYheRv8jidYUEhTodWigkAJRpIp1F+Mb9PxFS8SX1QZ72HNAeT+zYAIVlsAVg8Ay+B1Q3w10B5pPhXAGlY3AlYFQMagJIw2AkoN4ZrhrQ6L+GxAttwQ/+Xk5u4QAAAABJRU5ErkJggg==" />
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </transition>
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+
+        require(['joblist'], function (jl) {
+            Morph.WebClient.initJobsList();
+        })
+
+    </script>
+}
